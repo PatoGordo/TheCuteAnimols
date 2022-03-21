@@ -9,15 +9,17 @@ export const animalsStore = Vue.reactive({
     dog: [],
     otter: [],
     capybara: [],
-    fox: []
+    fox: [],
+    duck: [],
   },
-  animalsTags: ["cat", "dog", "otter", "capybara", "fox"],
+  animalsTags: ["cat", "dog", "otter", "capybara", "fox", "duck"],
   emojis: {
     cat: "😺",
     dog: "🐶",
     otter: "🦦",
     capybara: "ʕ•ᴥ•ʔ",
-    fox: "🦊"
+    fox: "🦊",
+    duck: "🦆"
   },
   loadingSaveImage: false,
   async saveAnimal(newImageData) {

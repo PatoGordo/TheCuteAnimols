@@ -58,7 +58,7 @@ export class NewPhoto {
     <div v-if="authStore.canWrite">
       <h2 class="title">New animal photo</h2>
       
-      <img v-if="fileURL" :src="fileURL" class="container lazy" style="border-radius: 16px;" />
+      <img v-if="fileURL" :src="fileURL" class="container lazy" style="border-radius: 16px; height: 320px;" />
       
       <input
         type="file"

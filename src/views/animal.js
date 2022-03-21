@@ -30,7 +30,7 @@ export class Animal {
       <h2 class="title">{{ firstLetterUpper(tag) }}</h2>
       
       <section class="container">
-        <img class="container lazy" style="border-radius: 16px;" v-for="animal in data" :alt="tag" :src="animal.url" />
+        <img class="container lazy" style="border-radius: 16px;" v-for="animal in data" :alt="tag + ' - ' + animal.id" :src="animal.url" />
       </section>
     </div>
   `
