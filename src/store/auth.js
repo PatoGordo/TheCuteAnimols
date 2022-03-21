@@ -1,4 +1,4 @@
-import { signOut, onAuthStateChanged, signInWithPopup, updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js"
+import { signOut, onAuthStateChanged, signInWithPopup, updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js"
 import { auth } from "../firebase.js"
 
 const googleProvider = new GoogleAuthProvider()
@@ -9,12 +9,15 @@ export const authStore = Vue.reactive({
   password: '',
   displayName: '',
   user: null,
+  haveUser: false,
+  canWrite: false,
   async signInWithGoogle(cb = null) {
     try {
       const result = await signInWithPopup(auth, googleProvider)
       const user = result.user
 
       this.user = user
+      this.haveUser = true
 
       if (cb) {
         cb()
@@ -29,6 +32,7 @@ export const authStore = Vue.reactive({
       const user = result.user
 
       this.user = user
+      this.haveUser = true
 
       if (cb) {
         cb()
@@ -44,6 +48,7 @@ export const authStore = Vue.reactive({
         const user = result.user
 
         this.user = user
+        this.haveUser = true
 
         cb()
       }
@@ -61,6 +66,7 @@ export const authStore = Vue.reactive({
       const user = { ...result.user, displayName: this.displayName }
 
       this.user = user
+      this.haveUser = true
 
       if (cb) {
         cb()
@@ -74,6 +80,7 @@ export const authStore = Vue.reactive({
       await signOut(auth)
 
       this.user = null
+      this.haveUser = false
 
       if (cb) {
         cb()
@@ -86,6 +93,7 @@ export const authStore = Vue.reactive({
     onAuthStateChanged(auth, (user) => {
       if (user) {
         authStore.user = user
+        authStore.haveUser = true
         if (cb) {
           cb()
         }
@@ -93,3 +101,13 @@ export const authStore = Vue.reactive({
     })
   }
 })
+
+Vue.watch(
+  () => authStore.user,
+  (val) => {
+    if (val.uid === "QdNsW0HaqNdVPJHIxgde5ckbf6V2") {
+      authStore.canWrite = true
+    }
+  },
+  { deep: true }
+)

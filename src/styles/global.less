@@ -42,3 +42,34 @@
 .page {
   width: min(510px, 100%) !important;
 }
+
+.tags {
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 16px;
+  border-radius: 1000px;
+  white-space: nowrap;
+}
+
+.lazy {
+  background: #ccc;
+  width: 100%;
+  min-height: 320px;
+  object-fit: cover !important;
+}
+
+.upload {
+  width: 48px !important;
+  height: 48px !important;
+  &::after {
+    width: 24px !important;
+    height: 24px !important;
+    border-width: 3px !important;
+  }
+}
+
+.d-none {
+  display: none;
+}

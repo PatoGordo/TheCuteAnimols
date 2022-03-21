@@ -2,14 +2,16 @@ import { AppTopbar } from "./components/app-topbar.js"
 import { app, analytics } from "./firebase.js"
 
 import { authStore } from "./store/auth.js"
+import { animalsStore } from "./store/animals.js"
 
 export class App {
   components = {
     'app-topbar': new AppTopbar()
   }
 
-  mounted() {
+  async mounted() {
     authStore.getCurrentUser()
+    await animalsStore.getAnimals()
     
     analytics(app)
     

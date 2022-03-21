@@ -1,7 +1,8 @@
 import { Home } from "../views/home.js"
-import { About } from "../views/about.js"
 import { SignIn } from "../views/sign-in.js"
 import { Profile } from "../views/profile.js"
+import { Animal } from "../views/animal.js"
+import { NewPhoto } from "../views/new-photo.js"
 import { Page404 } from "../views/404.js"
 
 export const views = [
@@ -12,9 +13,14 @@ export const views = [
     alias: '/index.html'
   },
   {
-    name: 'about',
-    path: '/about',
-    component: new About()
+    name: "animal",
+    path: "/animal/:tag",
+    component: new Animal()
+  },
+  {
+    name: "new photo",
+    path: "/new-photo",
+    component: new NewPhoto()
   },
   {
     name: 'sign-in',

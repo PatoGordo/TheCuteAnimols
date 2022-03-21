@@ -1,3 +1,5 @@
+import { animalsStore } from "../store/animals.js"
+
 export class Home {
   setup() {
     const isDark = Vue.ref(localStorage.getItem("theme") === "dark" ? true : false)
@@ -23,21 +25,24 @@ export class Home {
     return {
       isDark,
       changeTheme,
+      animalsStore
     }
   }
 
   template = `
     <div class="home">
-      <div class="container row center" style="justify-content: space-between !important; margin-bottom: 16px;">
+      <h2 class="title">Click in the tags below</h2>
+      <span class="tags container center row">
+        <span v-for="tag in animalsStore.animalsTags" @click="$router.push('/animal/'+tag)" class="tag bg-pink c-white">{{ animalsStore.animals[tag].length }} {{ animalsStore.emojis[tag] }} {{ tag }}</span>
+      </span>
+    
+      <!--div class="container row center" style="justify-content: space-between !important; margin-bottom: 16px;">
         <label for="theme"><strong>Dark mode</strong></label>
         <label class="switch">
           <input id="theme" @click="changeTheme" v-model="isDark" type="checkbox">
           <span class="slider rounded c-purple"></span>
         </label>
-      </div>
-
-      <router-link to="/sign-in">Logar</router-link>
-      <router-link to="/profile">Ver perfil</router-link>
+      </div-->
     </div>
   `
 }
